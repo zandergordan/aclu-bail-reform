@@ -442,8 +442,9 @@ class ScraperAthensClarke(object):
         inmate_race = inmate_race.str.replace('black/african american', 'black')\
                                  .str.replace('hispanic or latino', 'hispanic')\
                                  .str.replace('middle eastern decent', 'middle-eastern')\
+                                 .str.replace('american indian/alaskan native', 'native-american')\
                                  .str.replace('unknown', '') # leave race blank in this case. previous line: they had a "descent" typo
-        assert np.isin(inmate_race.unique(), np.array(['asian','white','black','hispanic','middle-eastern',''])).all(),\
+        assert np.isin(inmate_race.unique(), np.array(['asian','white','black','hispanic','native-american','middle-eastern',''])).all(),\
                      "One or more of these races not converted to standard format: " + str(inmate_race.unique())
         self.df['inmate_race'] = inmate_race
         
